@@ -7,9 +7,15 @@ namespace SalesWebMvc.Models
     public class Seller
     {
         public int  Id{ get; set; }
+        [Required (ErrorMessage ="{0} required")]
         public string Name { get; set; }
+
         [DataType(DataType.EmailAddress)]
+
+        [Required(ErrorMessage = "{0} required")]
         public string Email { get; set; }
+        
+        [Required (ErrorMessage ="{0} required")]
         [Display(Name=" Birth  Date")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString ="{0:dd/MM/yyyy}")]
