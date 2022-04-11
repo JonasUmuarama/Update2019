@@ -37,9 +37,17 @@ namespace SalesWebMvc.Services
 
         public void Remove(int id)
         {
-            var obj = _context.Seller.Find(id);
-            _context.Seller.Remove(obj);
-            _context.SaveChanges();
+            try
+            {
+                var obj = _context.Seller.Find(id);
+                _context.Seller.Remove(obj);
+                _context.SaveChanges();
+            }
+            catch(DbUpdateException e)
+            {
+                throw new IntegritException("Não é possível deletar vendedor, pois ele possui vendas!");
+            }
+           
         }
 
         public void Update(Seller obj)
